@@ -11,7 +11,7 @@ func ConvertToPolish(formula *queue.Queuelist) *queue.Queuelist {
 	polishFormula := new(queue.Queuelist)
 	for !(formula.IsEmpty()) {
 		op1 := formula.Dequeue()
-		if isOperator(op1) {
+		if isOperator(op1) || isMathFunc(op1) {
 			op2 := stack.Pop()
 			if op1 ==")" {
 				for op2 != "" && op2 != "(" {
@@ -49,7 +49,7 @@ func isOperator(data string) bool {
 }
 
 func priority(operator string) int{
-	list_priority := map[string]int{"": -1, "(": 1, ")": 1, "+": 2, "-": 2, "*": 3, "/": 3, "~": 4, }
+	list_priority := map[string]int{"": -1, "(": 1, ")": 1, "+": 2, "-": 2, "*": 3, "/": 3, "sin": 5, "cos": 5, "tan": 5, "ctg": 5, "ln": 5, "sqrt": 5, "~": 4, }
 	prior := list_priority[operator]
 	return prior
 }

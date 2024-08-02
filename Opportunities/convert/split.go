@@ -26,12 +26,21 @@ func SplitOnTokens(data string) (*queue.Queuelist, error) {
 				val += string(data[i])
 				i++
 			}
-			_, err = strconv.ParseFloat(val, 64)
-			if err != nil {
-				i = size
+			if !isMathFunc(val) {
+				_, err = strconv.ParseFloat(val, 64)
+				if err != nil {
+					i = size
+				}
 			}
 			parse_data.Enqueue(val)
+			
 		}
 	}
 	return parse_data, err
+}
+
+func isMathFunc(data string) bool {
+	list_math_func := map[string]struct{}{"sin": {}, "cos": {}, "tan": {}, "ctg": {}, "ln": {}, "sqrt": {}, }
+	_, ok := list_math_func[data]
+	return ok
 }
