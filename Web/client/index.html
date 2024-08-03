@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{.Title}}</title>
+</head>
+<body>
+    <form method="POST" action="/submit">
+        <label for="text-input">Введите формулу:</label>
+        <input type="text" id="text-input" name="text-input" placeholder="1+x">
+        <button type="submit">Отправить</button>
+    </form>
+    <p>{{.Ans}}</p>
+</body>
+</html>

@@ -6,7 +6,7 @@ import (
 	"unicode/utf8"
 )
 
-func SplitOnTokens(data string) (*queue.Queuelist, error) {
+func SplitOnTokens(data string, x string) (*queue.Queuelist, error) {
 	parse_data := new(queue.Queuelist)
 	size := utf8.RuneCountInString(data)
 	var err error
@@ -24,11 +24,14 @@ func SplitOnTokens(data string) (*queue.Queuelist, error) {
 				val += string(data[i])
 				i++
 			}
-			if !IsMathFunc(val) {
+			if !IsMathFunc(val) && val != "x" {
 				_, err = strconv.ParseFloat(val, 64)
 				if err != nil {
 					i = size
 				}
+			}
+			if val == "x" {
+				val = x
 			}
 			parse_data.Enqueue(val)
 		}
