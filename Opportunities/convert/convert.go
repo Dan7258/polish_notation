@@ -11,7 +11,7 @@ func ConvertToPolish(formula *queue.Queuelist) *queue.Queuelist {
 	polishFormula := new(queue.Queuelist)
 	for !(formula.IsEmpty()) {
 		op1 := formula.Dequeue()
-		if isOperator(op1) || isMathFunc(op1) {
+		if IsOperator(op1) || IsMathFunc(op1) {
 			op2 := stack.Pop()
 			if op1 ==")" {
 				for op2 != "" && op2 != "(" {
@@ -42,7 +42,7 @@ func ConvertToPolish(formula *queue.Queuelist) *queue.Queuelist {
 	return polishFormula
 }
 
-func isOperator(data string) bool {
+func IsOperator(data string) bool {
 	operators := "+-*/()~"
 	answer := strings.Contains(operators,data)
 	return answer

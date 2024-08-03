@@ -1,7 +1,6 @@
 package convert
 
 import (
-	//"fmt"
 	"polish_notation/Containers/queue"
 	"strconv"
 	"unicode/utf8"
@@ -12,34 +11,32 @@ func SplitOnTokens(data string) (*queue.Queuelist, error) {
 	size := utf8.RuneCountInString(data)
 	var err error
 	for i := 0; i < size;  {
-		if isOperator(string(data[i])) {			
+		if IsOperator(string(data[i])) {			
 			if string(data[i]) == "-" && (i == 0 || string(data[i-1]) == "(") {
 				parse_data.Enqueue("~")
 			} else {
 				parse_data.Enqueue(string(data[i]))
 			}
-			
 			i++
 		} else {
 			var val string
-			for i < size && !isOperator(string(data[i])) {
+			for i < size && !IsOperator(string(data[i])) {
 				val += string(data[i])
 				i++
 			}
-			if !isMathFunc(val) {
+			if !IsMathFunc(val) {
 				_, err = strconv.ParseFloat(val, 64)
 				if err != nil {
 					i = size
 				}
 			}
 			parse_data.Enqueue(val)
-			
 		}
 	}
 	return parse_data, err
 }
 
-func isMathFunc(data string) bool {
+func IsMathFunc(data string) bool {
 	list_math_func := map[string]struct{}{"sin": {}, "cos": {}, "tan": {}, "ctg": {}, "ln": {}, "sqrt": {}, }
 	_, ok := list_math_func[data]
 	return ok

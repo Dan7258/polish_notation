@@ -3,7 +3,9 @@ package main
 import (
 	"fmt"
 	"log"
+
 	//"polish_notation/Containers/queue"
+	"polish_notation/Opportunities/calculate"
 	"polish_notation/Opportunities/convert"
 	// "polish_notation/Containers/stack"
 )
@@ -18,7 +20,8 @@ func main() {
 	}
 	
 	polish_formula := convert.ConvertToPolish(formula)
-	for !polish_formula.IsEmpty() {
-		fmt.Printf("%s ", polish_formula.Dequeue())
-	}
+	fmt.Printf("%f", calculate.Calculate(polish_formula))
+	// for !polish_formula.IsEmpty() {
+	// 	fmt.Printf("%s ", polish_formula.Dequeue())
+	// }
 }
