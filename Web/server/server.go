@@ -55,7 +55,7 @@ func drawImage(data string) error {
 	file, err := os.Create("someimage.png")
 
 	if err != nil {
-		fmt.Errorf("%s", err)
+		log.Printf("%v", err)
 	}
 
 	img := image.NewRGBA(image.Rect(0, -100, 360, 100))
