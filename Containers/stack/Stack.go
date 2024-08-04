@@ -15,7 +15,7 @@ func (q *Stacklist) Push(data string) {
 }
 
 func (q *Stacklist) Pop() string {
-	
+
 	if q.data == "" && q.next == nil {
 		return ""
 	}

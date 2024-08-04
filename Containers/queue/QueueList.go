@@ -30,7 +30,7 @@ func (q *Queuelist) Dequeue() string {
 func (q *Queuelist) Size() int {
 	current := q
 	i := 0
-	for ; current.next != nil; current = current.next{
+	for ; current.next != nil; current = current.next {
 		i++
 	}
 	return i
@@ -40,7 +40,6 @@ func (q *Queuelist) IsEmpty() bool {
 	f := false
 	if q.data == "" && q.next == nil {
 		f = true
-	} 
+	}
 	return f
 }
-

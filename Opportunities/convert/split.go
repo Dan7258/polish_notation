@@ -10,8 +10,8 @@ func SplitOnTokens(data string, x string) (*queue.Queuelist, error) {
 	parse_data := new(queue.Queuelist)
 	size := utf8.RuneCountInString(data)
 	var err error
-	for i := 0; i < size;  {
-		if IsOperator(string(data[i])) {			
+	for i := 0; i < size; {
+		if IsOperator(string(data[i])) {
 			if string(data[i]) == "-" && (i == 0 || string(data[i-1]) == "(") {
 				parse_data.Enqueue("~")
 			} else {
@@ -40,7 +40,7 @@ func SplitOnTokens(data string, x string) (*queue.Queuelist, error) {
 }
 
 func IsMathFunc(data string) bool {
-	list_math_func := map[string]struct{}{"sin": {}, "cos": {}, "tan": {}, "ctg": {}, "ln": {}, "sqrt": {}, }
+	list_math_func := map[string]struct{}{"sin": {}, "cos": {}, "tan": {}, "ctg": {}, "ln": {}, "sqrt": {}}
 	_, ok := list_math_func[data]
 	return ok
 }
